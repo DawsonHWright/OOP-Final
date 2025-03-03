@@ -1,0 +1,1 @@
+This project aims to implement the game "Fractal Tic-Tac-Toe" using the Python language and object-oriented design principles.
