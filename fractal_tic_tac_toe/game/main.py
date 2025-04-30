@@ -1,5 +1,6 @@
 from fractal import Fractal
 
+
 def main():
     game = Fractal()
     game.loop()
