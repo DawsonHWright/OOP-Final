@@ -1,6 +1,6 @@
 import unittest
 from board import Board
-from square import Square
+
 
 class TestBoard(unittest.TestCase):
     def test_empty_board_not_won(self):
@@ -28,7 +28,7 @@ class TestBoard(unittest.TestCase):
     def test_draw(self):
         board = Board(isBig=False)
         # Fill all cells with no winner
-        fill = [[0,1,0],[1,0,1],[1,0,1]]
+        fill = [[0, 1, 0], [1, 0, 1], [1, 0, 1]]
         for i in range(3):
             for j in range(3):
                 board._children[i][j].status = fill[i][j]

@@ -8,7 +8,8 @@ class Fractal:
         pygame.init()
         self.screen_size = screen_size
         self.margin = margin
-        self.screen = pygame.display.set_mode((self.screen_size, self.screen_size))
+        self.screen = pygame.display.set_mode((self.screen_size,
+                                               self.screen_size))
         pygame.display.set_caption("Fractal Tic-Tac-Toe")
 
         self.main_board = Board(isBig=True)
@@ -18,7 +19,7 @@ class Fractal:
         self.clock = pygame.time.Clock()
 
     def get_cell_from_pos(self, pos, board_rect):
-        """Return (row, col) in 3x3 grid for a given mouse position and rect."""
+        """Return (row, col) 3x3 grid for a given mouse position and rect."""
         x, y = pos
         rel_x = x - board_rect.left
         rel_y = y - board_rect.top
@@ -31,14 +32,15 @@ class Fractal:
         return None
 
     def handle_mouse_click(self, pos):
-        """Handles a full mouse click: checks big board, small board, places move."""
+        """Handle mouse click: checks big board, small board, places move."""
         clicked_big = self.get_cell_from_pos(pos, self.screen.get_rect())
         if not clicked_big:
             return
 
         big_row, big_col = clicked_big
 
-        if self.next_board is not None and (big_row, big_col) != self.next_board:
+        if self.next_board is not None\
+           and (big_row, big_col) != self.next_board:
             return  # Not allowed to play here
 
         # Locate mini board
@@ -66,31 +68,34 @@ class Fractal:
         big_board = self.main_board._children[big_row][big_col]
         if isinstance(big_board, Board):
             small_square = big_board._children[small_row][small_col]
-            if isinstance(small_square, Square):
-                if small_square.playHere(self.current_player):
-                    winner = big_board.isWon()
-                    if winner in [0, 1]:  # Only replace if one player won
-                        self.main_board._children[big_row][big_col] = Square()
-                        self.main_board._children[big_row][big_col].status = winner
-                    # If winner == 2 (draw), leave the mini-board visible but greyed
+            if small_square.playHere(self.current_player):
+                winner = big_board.isWon()
+                if winner in [0, 1]:  # Only replace if one player won
+                    self.main_board._children[big_row][big_col] = Square()
+                    self.main_board._children[big_row][big_col].status = winner
+                # If winner == 2 (draw), leave the mini-board visible & greyed
 
-                    self.main_winner = self.main_board.isWon()
+                self.main_winner = self.main_board.isWon()
 
-                    # Update next board constraint
-                    self.next_board = (small_row, small_col)
-                    if isinstance(self.main_board._children[small_row][small_col], Square):
-                        self.next_board = None  # Free choice
-                    elif hasattr(self.main_board._children[small_row][small_col], 'status'):
-                        if self.main_board._children[small_row][small_col].status == 2:
-                            self.next_board = None  # Free choice if tied
+                # Update next board constraint
+                self.next_board = (small_row, small_col)
+                if isinstance(self.main_board._children[small_row][small_col],
+                              Square):
+                    self.next_board = None  # Free choice
+                elif hasattr(self.main_board._children[small_row][small_col],
+                             'status'):
+                    if self.main_board._children[small_row][small_col]\
+                            .status == 2:
+                        self.next_board = None  # Free choice if tied
 
-                    # Switch players
-                    self.current_player = 1 - self.current_player
+                # Switch players
+                self.current_player = 1 - self.current_player
 
     def draw(self):
         """Draws the full board."""
         self.screen.fill((0, 0, 0))
-        self.main_board.draw(self.screen, self.margin, play_mode=0, playable=self.next_board)
+        self.main_board.draw(self.screen, self.margin, play_mode=0,
+                             playable=self.next_board)
         pygame.display.flip()
 
     def loop(self):
@@ -101,7 +106,8 @@ class Fractal:
                 if event.type == pygame.QUIT:
                     running = False
 
-                if self.main_winner == -1 and event.type == pygame.MOUSEBUTTONDOWN:
+                if self.main_winner == -1 and\
+                   event.type == pygame.MOUSEBUTTONDOWN:
                     self.handle_mouse_click(pygame.mouse.get_pos())
 
             self.draw()

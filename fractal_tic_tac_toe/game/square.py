@@ -1,7 +1,5 @@
 from drawable import Drawable
-from pygame import Surface
 from pygame import draw
-from pygame import Rect
 
 
 class Square(Drawable):
@@ -18,7 +16,8 @@ class Square(Drawable):
         else:
             return False
 
-    def draw(self, surface, margin: float, play_mode: int = 0, playable: (int, int) = None):
+    def draw(self, surface, margin: float, play_mode: int = 0,
+             playable: (int, int) = None):
         size_x, size_y = surface.get_size()
         my_margin = round(size_x * margin)
         my_rect = surface.get_rect().inflate(-my_margin * 2, -my_margin * 2)
@@ -33,5 +32,7 @@ class Square(Drawable):
             radius = min(my_rect.width, my_rect.height) // 2 - my_margin
             draw.circle(surface, Drawable.BLUE, center, radius, my_margin)
         elif self.status == 1:
-            draw.line(surface, Drawable.RED, my_rect.topleft, my_rect.bottomright, my_margin)
-            draw.line(surface, Drawable.RED, my_rect.topright, my_rect.bottomleft, my_margin)
+            draw.line(surface, Drawable.RED, my_rect.topleft,
+                      my_rect.bottomright, my_margin)
+            draw.line(surface, Drawable.RED, my_rect.topright,
+                      my_rect.bottomleft, my_margin)

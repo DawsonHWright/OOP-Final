@@ -1,4 +1,5 @@
-from .board import FractalTicTacToe
+from board_original import FractalTicTacToe
+
 
 def play_game():
     game = FractalTicTacToe()  # This line creates the game instance
