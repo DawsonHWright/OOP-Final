@@ -1,4 +1,10 @@
-from game.game_loop import play_game
+from fractal import Fractal
+
+
+def main() -> None:
+    game = Fractal()
+    game.loop()
+
 
 if __name__ == "__main__":
-    play_game()
+    main()

@@ -1,21 +1,21 @@
 from pygame import Surface
 from pygame import Rect
 from pygame import draw
-from typing import Any, Tuple
+from typing import Any
 from drawable import Drawable
 from square import Square
 
 
 class Board(Drawable):
-    _children: Drawable
+    _children: list[list[Drawable]]
     _status: int
 
-    def __init__(self, isBig: bool):
+    def __init__(self, isBig: bool) -> None:
         if isBig:
-            self._children: Drawable =\
+            self._children =\
                 [[Board(False) for _ in range(3)] for _ in range(3)]
         else:
-            self._children: Drawable =\
+            self._children =\
                 [[Square() for _ in range(3)] for _ in range(3)]
         self.status = -1
         self.isBig = isBig
@@ -91,7 +91,3 @@ class Board(Drawable):
                       (x, working_rect.top),
                       (x, working_rect.bottom),
                       my_margin)
-
-        # Green border for target square
-        if play_mode == 1:
-            draw.rect(surface, Drawable.GREEN, surface.get_rect(), 5)

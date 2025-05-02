@@ -10,5 +10,5 @@ class Drawable:
     GREEN = (0, 255, 0)
     DARK_GREY = (100, 100, 100)
 
-    def draw(self, surface: Surface, margin: float):
+    def draw(self, surface: Surface, margin: float) -> None:
         raise NotImplementedError("Subclasses must implement draw method")

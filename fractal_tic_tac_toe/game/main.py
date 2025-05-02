@@ -1,10 +1,5 @@
-from fractal import Fractal
+from fractal import Fractal  # pragma: no cover
 
 
-def main() -> None:
-    game = Fractal()
-    game.loop()
-
-
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__":  # pragma: no cover
+    Fractal().loop()

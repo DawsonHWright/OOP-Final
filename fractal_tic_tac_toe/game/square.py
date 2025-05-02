@@ -1,9 +1,10 @@
 from drawable import Drawable
 from pygame import draw
+from pygame import Surface
 
 
 class Square(Drawable):
-    def __init__(self):
+    def __init__(self) -> None:
         self.status = -1
 
     def isOwned(self) -> bool:
@@ -16,8 +17,8 @@ class Square(Drawable):
         else:
             return False
 
-    def draw(self, surface, margin: float, play_mode: int = 0,
-             playable: (int, int) = None):
+    def draw(self, surface: Surface, margin: float, play_mode: int = 0,
+             playable: (int, int) = None) -> None:
         size_x, size_y = surface.get_size()
         my_margin = round(size_x * margin)
         my_rect = surface.get_rect().inflate(-my_margin * 2, -my_margin * 2)
