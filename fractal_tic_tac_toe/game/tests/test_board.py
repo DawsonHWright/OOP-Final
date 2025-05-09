@@ -41,7 +41,7 @@ class TestBoard(unittest.TestCase):
 
     @patch("board.draw.line")
     @patch("board.draw.rect")
-    def test_board_draw_invokes_drawing(self, mock_rect, mock_line):
+    def test_board_draw(self, mock_rect, mock_line):
         board = Board(isBig=False)
         mock_surface = MagicMock()
         mock_surface.get_size.return_value = (600, 600)
@@ -59,3 +59,5 @@ class TestBoard(unittest.TestCase):
         board.draw(mock_surface, margin=0.01, play_mode=0)
         self.assertEqual(mock_surface.subsurface.call_count, 9)
         self.assertTrue(mock_line.called)
+        board.status = 2
+        board.draw(mock_surface, margin=0.01, play_mode=0, playable=(0, 0))

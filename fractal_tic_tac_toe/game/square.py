@@ -23,11 +23,6 @@ class Square(Drawable):
         my_margin = round(size_x * margin)
         my_rect = surface.get_rect().inflate(-my_margin * 2, -my_margin * 2)
 
-        """
-        if play_mode == -1 and self.status == -1:
-            draw.rect(surface, Drawable.DARK_GREY, surface.get_rect())
-        """
-
         if self.status == 0:
             center = my_rect.center
             radius = min(my_rect.width, my_rect.height) // 2 - my_margin
