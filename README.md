@@ -7,17 +7,12 @@
 | **Semester** | Spring 2025 |
 | **Project** | Fractal Tic-Tac-Toe |
 
-# How to Run
+# How to Run / Test
 
-* Change directories to fractal_tic_tac_toe
-* Activate the virtual environment - on linux: $ source ./bin/activate
-* Run: $ python3 ./game/main.py
-
-# How to Test
-
-* Change directories to fractal_tic_tac_toe
-* Activate the virtual environment - on linux: $ source ./bin/activate
-* Run: $ make all
+* Ensure you have installed the modules listed in requirements.txt
+* Change directories to fractal_tic_tac_toe/game
+* To run the game: $ python3 ./game/main.py
+* To run tests: $ make all
 
 # Judge's Scoring
 
